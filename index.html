@@ -1,186 +1,180 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assignment 04</title>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <style>
-    body {
-      font-family: "Roboto", Arial, sans-serif;
-      background-color: #3c4352;
-      color: #fff;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-    h1, h2 {
-      margin: 10px 0;
-      text-transform: uppercase;
-    }
-    #map {
-      margin: 20px auto;
-      width: 100%;
-      max-width: 1200px;
-      height: 800px;
-      background-color: #eef2f3;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    .tooltip {
-      position: absolute;
-      background-color: #fff;
-      color: #333;
-      border: 1px solid #046468;
-      border-radius: 5px;
-      padding: 10px;
-      font-size: 14px;
-      pointer-events: none;
-      opacity: 0;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    .legend {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px 0;
-    }
-    .legend div {
-      width: 40px;
-      height: 20px;
-      margin-right: 5px;
-    }
-    .legend span {
-      margin-left: 5px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Assignment 4</h1>
-  <h2>Singapore Population in 2023: Choropleth Visualization</h2>
-  <p>Created by Sam Koh (Student ID: 1009697)</p>
-  <div id="map"></div>
-  <div id="tooltip" class="tooltip"></div>
-  <div class="legend-container">
-    <div class="legend-item">
-      <div style="background-color: #b5d4e9;" class="legend-color"></div>
-      <span>0 - 20,000</span>
-    </div>
-    <div class="legend-item">
-      <div style="background-color: #93c3df;" class="legend-color"></div>
-      <span>20,001 - 40,000</span>
-    </div>
-    <div class="legend-item">
-      <div style="background-color: #6daed5;" class="legend-color"></div>
-      <span>40,001 - 60,000</span>
-    </div>
-    <div class="legend-item">
-      <div style="background-color: #4b97c9;" class="legend-color"></div>
-      <span>60,001 - 80,000</span>
-    </div>
-    <div class="legend-item">
-      <div style="background-color: #2f7ebc;" class="legend-color"></div>
-      <span>80,001 - 100,000</span>
-    </div>
-    <div class="legend-item">
-      <div style="background-color: #1864aa;" class="legend-color"></div>
-      <span>100,001 - 120,000</span>
-    </div>
-    <div class="legend-item">
-      <div style="background-color: #0a4a90;" class="legend-color"></div>
-      <span>120,001+</span>
-    </div>
-  </div>
-  
-  <style>
-    .legend-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px 0;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .legend-color {
-      width: 20px;
-      height: 20px;
-      border: 1px solid #000;
-    }
-  </style>
-  
-  </div>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        background-color: #3c4352;
+        color: #fff;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      h2 {
+        margin: 10px 0;
+        text-transform: uppercase;
+      }
+      #map {
+        width: 100vw;
+        height: 90vh;
+      }
+      .tooltip {
+        position: absolute;
+        background-color: #fff;
+        color: #333;
+        border: 1px solid #046468;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 14px;
+        pointer-events: none;
+        opacity: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .legend {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+      }
+      .legend div {
+        width: 40px;
+        height: 20px;
+        margin-right: 5px;
+      }
+      .legend span {
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Singapore Population in 2023: Choropleth Visualization</h2>
+    <p>Created by Sam Koh (Student ID: 1009697)</p>
+    <div id="map"></div>
+    <div id="tooltip" class="tooltip"></div>
+    <div class="legend-container">
+      <div class="legend-item">
+        <div style="background-color: #b5d4e9;" class="legend-color"></div>
+        <span>0 - 20,000</span>
+      </div>
+      <div class="legend-item">
+        <div style="background-color: #93c3df;" class="legend-color"></div>
+        <span>20,001 - 40,000</span>
+      </div>
+      <div class="legend-item">
+        <div style="background-color: #6daed5;" class="legend-color"></div>
+        <span>40,001 - 60,000</span>
+      </div>
+      <div class="legend-item">
+        <div style="background-color: #4b97c9;" class="legend-color"></div>
+        <span>60,001 - 80,000</span>
+      </div>
+      <div class="legend-item">
+        <div style="background-color: #2f7ebc;" class="legend-color"></div>
+        <span>80,001 - 100,000</span>
+      </div>
+      <div class="legend-item">
+        <div style="background-color: #1864aa;" class="legend-color"></div>
+        <span>100,001 - 120,000</span>
+      </div>
+      <div class="legend-item">
+        <div style="background-color: #0a4a90;" class="legend-color"></div>
+        <span>120,001+</span>
+      </div>
 
-  <script>
+    <style>
+      .legend-container {
+        position: absolute;
+        bottom: -100px;
+        right: 20%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .legend-color {
+        width: 15px; /* Smaller width */
+        height: 15px; /* Smaller height */
+        border: 1px solid #000;
+      }
+    </style>
     
-    const width = 1000, height = 600;
+    </div>
 
- 
-    const svg = d3.select("#map")
-      .append("svg")
-      .attr("viewBox", `0 0 ${width} ${height}`);
+    <script>
+      
+      const width = 1000, height = 600;
+  
+      const svg = d3.select("#map")
+        .append("svg")
+        .attr("viewBox", `0 0 ${width} ${height}`);
 
-   
-    const tooltip = d3.select("#tooltip");
+      const tooltip = d3.select("#tooltip");
 
-    Promise.all([
-      d3.json("https://raw.githubusercontent.com/Chi-Loong/HASS02.526/master/assignments/sgmap.json"),
-      d3.csv("https://raw.githubusercontent.com/Chi-Loong/HASS02.526/master/assignments/population2023.csv")
-    ]).then(([geoData, popData]) => {
-      const mapData = geoData.features;
+      Promise.all([
+        d3.json("https://raw.githubusercontent.com/Chi-Loong/HASS02.526/master/assignments/sgmap.json"),
+        d3.csv("https://raw.githubusercontent.com/Chi-Loong/HASS02.526/master/assignments/population2023.csv")
+      ]).then(([geoData, popData]) => {
+        const mapData = geoData.features;
 
-      mapData.forEach(d => {
-        const subzone = popData.find(e => e.Subzone.toUpperCase() === d.properties.Name.toUpperCase());
-        d.popdata = subzone ? parseInt(subzone.Population) : 0;
-      });
-
-
-      const colorScale = d3.scaleThreshold()
-        .domain([1, 20000, 40000, 60000, 80000, 100000, 120000])
-        .range(["#b5d4e9", "#93c3df", "#6daed5", "#4b97c9", "#2f7ebc", "#1864aa", "#0a4a90", "#08306b"]);
-
-      const projection = d3.geoMercator()
-        .center([103.851959, 1.290270])
-        .fitExtent([[20, 20], [980, 580]], geoData);
-
-      const path = d3.geoPath().projection(projection);
-
-      svg.append("g")
-        .selectAll("path")
-        .data(mapData)
-        .enter()
-        .append("path")
-        .attr("d", path)
-        .attr("fill", d => colorScale(d.popdata))
-        .attr("stroke", "#fff")
-        .attr("stroke-width", 0.5)
-        .on("mouseover", (event, d) => {
-          
-          d3.select(event.currentTarget).attr("stroke", "black").attr("stroke-width", 1.5);
-          
-          svg.selectAll("path").filter(p => p !== d)
-            .transition().duration(200)
-            .style("opacity", 0.5);
-          
-          tooltip.style("opacity", 1)
-            .html(`<strong>${d.properties.Name}</strong><br>Population: ${d.popdata.toLocaleString()}`)
-            .style("left", event.pageX + 10 + "px")
-            .style("top", event.pageY - 40 + "px");
-        })
-        .on("mouseout", (event, d) => {
-          
-          svg.selectAll("path")
-            .transition().duration(200)
-            .style("opacity", 1);
-
-          d3.select(event.currentTarget).attr("stroke", "#fff").attr("stroke-width", 0.5);
-        
-          tooltip.style("opacity", 0);
+        mapData.forEach(d => {
+          const subzone = popData.find(e => e.Subzone.toUpperCase() === d.properties.Name.toUpperCase());
+          d.popdata = subzone ? parseInt(subzone.Population) : 0;
         });
-    });
-  </script>
-</body>
-</html>
+
+        const colorScale = d3.scaleThreshold()
+          .domain([1, 20000, 40000, 60000, 80000, 100000, 120000])
+          .range(["#b5d4e9", "#93c3df", "#6daed5", "#4b97c9", "#2f7ebc", "#1864aa", "#0a4a90", "#08306b"]);
+
+        const projection = d3.geoMercator()
+          .center([103.851959, 1.290270])
+          .fitExtent([[20, 20], [980, 580]], geoData);
+
+        const path = d3.geoPath().projection(projection);
+
+        svg.append("g")
+          .selectAll("path")
+          .data(mapData)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .attr("fill", d => colorScale(d.popdata))
+          .attr("stroke", "#fff")
+          .attr("stroke-width", 0.5)
+          .on("mouseover", (event, d) => {
+            
+            d3.select(event.currentTarget).attr("stroke", "black").attr("stroke-width", 1.5);
+            
+            svg.selectAll("path").filter(p => p !== d)
+              .transition().duration(200)
+              .style("opacity", 0.5);
+            
+            tooltip.style("opacity", 1)
+              .html(`<strong>${d.properties.Name}</strong><br>Population: ${d.popdata.toLocaleString()}`)
+              .style("left", event.pageX + 10 + "px")
+              .style("top", event.pageY - 40 + "px");
+          })
+          .on("mouseout", (event, d) => {
+            
+            svg.selectAll("path")
+              .transition().duration(200)
+              .style("opacity", 1);
+
+            d3.select(event.currentTarget).attr("stroke", "#fff").attr("stroke-width", 0.5);
+          
+            tooltip.style("opacity", 0);
+          });
+      });
+    </script>
+  </body>
+  </html>
